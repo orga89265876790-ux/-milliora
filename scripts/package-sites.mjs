@@ -3,18 +3,30 @@ import { resolve } from "node:path";
 
 const root = process.cwd();
 const dist = resolve(root, "dist");
-const openNext = resolve(root, ".open-next");
+const exportedSite = resolve(root, "out");
 
 await rm(dist, { recursive: true, force: true });
 await mkdir(resolve(dist, "server"), { recursive: true });
 await mkdir(resolve(dist, ".openai"), { recursive: true });
 
-await cp(openNext, resolve(dist, "server", "open-next"), { recursive: true });
-await cp(resolve(openNext, "assets"), resolve(dist, "assets"), { recursive: true });
+await cp(exportedSite, resolve(dist, "assets"), { recursive: true });
 
 await writeFile(
   resolve(dist, "server", "index.js"),
-  'export { default } from "./open-next/worker.js";\n',
+  `export default {
+  async fetch(request, env) {
+    const response = await env.ASSETS.fetch(request);
+
+    if (response.status !== 404 || request.method !== "GET") {
+      return response;
+    }
+
+    const url = new URL(request.url);
+    url.pathname = "/index.html";
+    return env.ASSETS.fetch(new Request(url, request));
+  },
+};
+`,
   "utf8",
 );
 
