@@ -3,6 +3,8 @@
 
 # Next.js
 /.next
+/.open-next
+/dist
 /out
 
 # production
