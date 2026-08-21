@@ -11,6 +11,22 @@
 - работают сохранение показателей, сна, фокусов месяца и дневника;
 - до подключения общей базы введённые данные хранятся локально на устройстве.
 
+## SEO и индексация
+
+В проекте подготовлена техническая база для поисковой индексации:
+
+- расширенные title/description и Open Graph metadata;
+- robots.txt через Next.js Metadata API;
+- sitemap.xml через Next.js Metadata API;
+- JSON-LD для WebSite и WebApplication;
+- единая конфигурация production URL;
+- favicon/app icon и web app manifest;
+- отдельный helper для индексируемых и приватных страниц.
+
+Перед production-сборкой обязательно задайте `NEXT_PUBLIC_SITE_URL` в окружении. Это должен быть фактический канонический адрес сайта, например `https://example.com`, без завершающего слэша. После подключения Google Search Console и Яндекс Вебмастера также заполните `GOOGLE_SITE_VERIFICATION` и `YANDEX_VERIFICATION`.
+
+Публичные посадочные страницы должны использовать `buildPublicMetadata()` и добавляться в `app/sitemap.ts`. Личные страницы пользователя — профиль, история Оры, приватные диалоги с Милли, настройки и персональные результаты — должны использовать `privatePageMetadata` и не добавляться в sitemap.
+
 ## Локальный запуск
 
 ```bash
