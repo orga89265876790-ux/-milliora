@@ -78,6 +78,7 @@ export default function Home() {
   function saveDiary() { if (!diary.trim()) return; window.localStorage.setItem("milliora.diary", JSON.stringify(diary)); showSaved("diary"); }
   function openAction(label: string) {
     if (label === "Сон") { document.getElementById("sleep-card")?.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+    if (label === "Хорар" || label === "Посмотреть хорар") { window.location.href = "/ora#astrology"; return; }
     setNotice(`${label}: раздел будет открыт на следующем экране`); window.setTimeout(() => setNotice(""), 2200);
   }
 
@@ -165,7 +166,7 @@ export default function Home() {
       </div>
 
       {notice && <div className="toast" role="status">{notice}</div>}
-      <nav className="bottom-nav" aria-label="Основная навигация">{[["⌂", "Главная"], ["▦", "Разделы"], ["✣", "Милли"], ["♧", "Ора"], ["♙", "Профиль"]].map(([icon, label], index) => <button className={index === 0 ? "active" : ""} key={label}><span>{icon}</span><b>{label}</b></button>)}</nav>
+      <nav className="bottom-nav" aria-label="Основная навигация">{[["⌂", "Главная"], ["▦", "Разделы"], ["✣", "Милли"], ["♧", "Ора"], ["♙", "Профиль"]].map(([icon, label], index) => <button aria-current={index === 0 ? "page" : undefined} className={index === 0 ? "active" : ""} key={label} onClick={() => { if (label === "Ора") window.location.href = "/ora"; }}><span>{icon}</span><b>{label}</b></button>)}</nav>
     </main>
   );
 }
