@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" role="img" aria-label="MilliOra">
+  <defs>
+    <linearGradient id="g" x1="8" y1="8" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f130bd"/>
+      <stop offset=".5" stop-color="#7837f5"/>
+      <stop offset="1" stop-color="#ff7b28"/>
+    </linearGradient>
+  </defs>
+  <rect width="72" height="72" rx="18" fill="#f6f7ff"/>
+  <path d="M36 62C15 59 10 43 12 22c11 2 20 7 24 15 4-8 13-13 24-15 2 21-3 37-24 40Z" fill="none" stroke="url(#g)" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M36 36v27" stroke="url(#g)" stroke-width="4" stroke-linecap="round"/>
+  <path d="m36 43 4 7 8 3-8 3-4 7-4-7-8-3 8-3 4-7Z" fill="url(#g)"/>
+</svg>
